@@ -10,7 +10,7 @@ and does not exchange data with external servers.
 
 ## How to use immediately
 
-Just access [https://beltrewilton.github.io/hachiue/](https://koniwa.github.io/hachiue/).
+Just access [https://beltrewilton.github.io/hachiue/](https://beltrewilton.github.io/hachiue/).
 
 ## How to use locally
 
