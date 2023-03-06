@@ -1,6 +1,7 @@
 var wavesurfer; // eslint-disable-line no-var
 let is_annotated = false;
 let handy = false;
+const audio_sample = 'call_center_demo.wav';
 /* global WaveSurfer */
 /* global localforage */
 /* global bootstrap */
@@ -173,7 +174,7 @@ function init_wavesurfer() {
     //   load_audio(data_audio);
     // });
 
-    const url_file = `${window.location.href}audio/call_center_demo.wav`;
+    const url_file = `${window.location.href}audio/${audio_sample}`;
     const slider = document.querySelector("#slider");
     slider.oninput = function () {
       const zoomLevel = Number(slider.value);
@@ -326,8 +327,9 @@ function init_wavesurfer() {
 
   {
     // UI
-    document.getElementById("title").innerText = "Hachiue";
-    document.title = "Hachiue";
+    document.getElementById("title").innerText = `Hachiue (fork) 🐶`;
+    document.getElementById("sub-title").innerText = `${audio_sample}`;
+    document.title = `Hachiue (fork) 🐶; ${audio_sample}`;
     document.getElementById("time-total").innerText = "0.00";
     document.getElementById("time-current").innerText = "0.00";
     document.getElementById("time-total-hms").innerText = "00:00:00";
