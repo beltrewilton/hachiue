@@ -172,6 +172,7 @@ function init_wavesurfer() {
     // localforage.getItem(key_audio, (err, data_audio) => {
     //   load_audio(data_audio);
     // });
+
     const url_file = `${window.location.href}audio/call_center_demo.wav`;
     const slider = document.querySelector("#slider");
     slider.oninput = function () {
