@@ -1,5 +1,6 @@
 var wavesurfer; // eslint-disable-line no-var
 let is_annotated = false;
+let handy = false;
 /* global WaveSurfer */
 /* global localforage */
 /* global bootstrap */
@@ -171,7 +172,7 @@ function init_wavesurfer() {
     // localforage.getItem(key_audio, (err, data_audio) => {
     //   load_audio(data_audio);
     // });
-    const url_file = `${window.location.href}audio/en_US_7a4f56d7-9aca-4ed5-96b9-9c9c36b8a3ac.wav`;
+    const url_file = `${window.location.href}audio/call_center_demo.wav`;
     const slider = document.querySelector("#slider");
     slider.oninput = function () {
       const zoomLevel = Number(slider.value);
@@ -199,6 +200,12 @@ function init_wavesurfer() {
       loadRegions(
         ready_region
       );
+
+      if (handy) {
+        wavesurfer.enableDragSelection({});
+        clear_annotations();
+      }
+
     });
 
     wavesurfer.on("ready", function () {
@@ -577,6 +584,22 @@ document.addEventListener("DOMContentLoaded", function () {
   //     });
   }
 
+  document.getElementById("handy_button").addEventListener("click", () => {
+    handy = !handy;
+    clear_annotations();
+
+    // localforage
+    //   .removeItem(key_audio, () => {})
+    //   .catch((err) => {
+    //     alert(err);
+    //   });
+
+    wavesurfer.empty();
+    wavesurfer.destroy();
+    init_wavesurfer();
+    document.querySelector("#handy_button").style.backgroundColor = handy? '#fafa32' : '#bdbdbd';
+  });
+
   document.getElementById("download_button").addEventListener("click", () => {
     const dd = new Date();
     const YYYY = dd.getFullYear();
@@ -670,8 +693,8 @@ function saveRegions() {
 function loadRegions(regions) {
   regions.forEach(function (region) {
     region.color = randomColor(0.1);
-    region.drag = false;
-    region.resize = false;
+    region.drag = handy;
+    region.resize = handy;
     wavesurfer.addRegion(region);
   });
 }
